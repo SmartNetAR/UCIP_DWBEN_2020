@@ -14,9 +14,11 @@ const server = http.createServer( ( req, res )=> {
     console.log( req.method );
     console.log( req.url );
 
-    res.statusCode = 200;
-    res.setHeader( 'Content-Type', 'application/json' );
-    res.write(JSON.stringify( empleado ));
+    // res.statusCode = 200;
+    // res.setHeader( 'Content-Type', 'application/json' );
+
+    res.writeHead( 200, { 'Content-Type': 'text/html' } )
+    res.write("<h2>Hola Mundo Nodemon</h2>");
     res.end();
 } );
 
