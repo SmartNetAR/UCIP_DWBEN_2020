@@ -1,4 +1,5 @@
 const http = require('http');
+const url = require('url');
 
 const server = http.createServer( ( req, res )=> {
 
@@ -14,11 +15,15 @@ const server = http.createServer( ( req, res )=> {
     console.log( req.method );
     console.log( req.url );
 
+    const query = url.parse( req.url, true ).query;
+
+    console.log(query);
+
     // res.statusCode = 200;
     // res.setHeader( 'Content-Type', 'application/json' );
 
     res.writeHead( 200, { 'Content-Type': 'text/html' } )
-    res.write("<h2>Hola Mundo Nodemon</h2>");
+    res.write(`<h2>Hola ${query.name} Nodemon</h2>`);
     res.end();
 } );
 

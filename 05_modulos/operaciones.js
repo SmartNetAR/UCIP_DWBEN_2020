@@ -21,5 +21,10 @@ function calculo(a, b) {
 //     calculo: calculo
 // }
 
-exports.PI = PI;
+exports.PI = 3.1415;
 exports.calculo = calculo;
+
+/**/
+exports.multiplicar = (a, b) => a * b;
+exports.cuadrado = a => (a * a);
+exports.persona = () => ({nombre: "leo", edad: 21})
