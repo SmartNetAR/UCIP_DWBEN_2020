@@ -1,24 +1,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express()
-const user = require('./userController');
+const morgan = require('morgan');
+require('dotenv').config()
 
-const port = 5000
+app.use(morgan('tiny'))
+const routes = require('./routes');
+
+
+const port = process.env.NODE_PORT || 4000 ;
 
 app.use(bodyParser.json()) // for parsing application/json
 
-// console.log(user.getUsers);
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
 
-app.get('/users', user.getUsers);
 
-app.post('/users', (req, res ) => {
-    const body = req.body;
-    console.log(body);
-    res.status(201).json(body);
-})
+
+routes(app);
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
