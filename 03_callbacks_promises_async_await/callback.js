@@ -5,8 +5,8 @@ let empleados = [
 ];
 
 let salarios = [
-    { id: 1, importe: 3000 },
-    { id: 2, importe: 2000 }
+    { id: 1, idEmpleado: 1, importe: 3000 },
+    { id: 2, idEmpleado: 2, importe: 2000 }
 ];
 
 
@@ -22,11 +22,28 @@ function getEmpleado( idEmpleado, cb ) {
     cb( null, empleado );
 }
 
-getEmpleado( 5, function ( err, empleado ) {
+const getSalario = ( empleado, cb ) => {
+    const salarioDb = salarios.find( salario => salario.idEmpleado === empleado.id )
+    if (!salarioDb)
+    {
+        return cb(`No se encontró un salario para el empleado ${empleado.nombre}` );
+    }
+
+    cb( null, salarioDb );
+
+}
+
+getEmpleado( 1, function ( err, empleado ) {
     if ( err ) {
         return console.log( "Error:", err );
     }
 
-    console.log("Empleado: ", empleado.nombre);
+    getSalario( empleado, ( err, result ) => {
+        if ( err ) {
+            return console.log( "Error: ", err );
+        }
+
+        console.log(`El salario de ${empleado.nombre} es de $ ${result.importe}`);
+    })
 
 } );
