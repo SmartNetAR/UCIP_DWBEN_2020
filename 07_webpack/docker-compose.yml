@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+
+    node:
+        container_name: tasks_node
+        image: node:12
+        command: npm start
+        working_dir: /app
+        environment: 
+            - NODE_PORT=4500
+        ports: 
+            - "8089:4500"
+        volumes: 
+            - ./:/app
+        
