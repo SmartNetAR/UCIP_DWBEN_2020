@@ -9,8 +9,34 @@ services:
         working_dir: /app
         environment: 
             - NODE_PORT=4500
+            - DB_HOST=tasks_db
+            - DB_NAME=tasks
+            - DB_USER=tasks
+            - DB_PASSWORD=tasks
         ports: 
             - "8089:4500"
+        networks:
+            - tasksnet
         volumes: 
             - ./:/app
         
+    db:
+        container_name: tasks_db
+        image: postgres:9.6-alpine
+        ports:
+            - "5433:5432"
+        networks:
+            - tasksnet
+        environment:
+            - POSTGRES_USER=tasks
+            - POSTGRES_DB=tasks
+            - POSTGRES_PASSWORD=tasks
+        volumes:
+            - data:/var/lib/postgresql/data
+
+networks: 
+    tasksnet:
+        driver: "bridge"
+
+volumes: 
+    data: {}

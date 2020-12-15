@@ -7,6 +7,9 @@
     "build": "webpack --config webpack.config.js",
     "start": "webpack --watch --config webpack.config.js",
     "watch": "nodemon dist/bundle.js",
+    "knex": "node_modules/.bin/knex",
+    "db:migrate": "npm run knex migrate:latest",
+    "db:rollback": "npm run knex migrate:rollback",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
