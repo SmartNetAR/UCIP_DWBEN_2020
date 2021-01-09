@@ -1,17 +1,10 @@
-import { Router } from 'express' ;
-
+import { Router } from 'express';
+import {getAll,getByID,createNewTask} from './controler';
 const router = Router();
 
-router.get ('/', (req, res) => {
-    res.status(200).json({
-        msg: "tasks"
-    })
-})
-router.get ('/:id', (req, res) => {
-    res.status(200).json({
-        id: req.params.id,
-        msg: "tasks"
-    })
-})
+
+router.get ('/', getAll);
+router.get ('/:id', getByID);
+router.post ('/', createNewTask);
 
 export default router;

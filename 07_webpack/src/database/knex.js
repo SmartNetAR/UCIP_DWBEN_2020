@@ -1,6 +1,6 @@
 import knex from 'knex';
 
-const knexConfig = require( './knextfile' ).development ;
+const knexConfig = require( './knexfile' ).development ;
 
 const connection = knex( knexConfig );
 
